@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using CmdSnippetsAPI.Data;
 
 namespace CmdSnippetsAPI
 {
@@ -26,6 +27,7 @@ namespace CmdSnippetsAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<ICmdSnippetsRepo, MockCmdRepo>();// created once per client request
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

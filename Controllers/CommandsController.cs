@@ -10,7 +10,13 @@ namespace CmdSnippetsAPI.Controllers
     [ApiController]
     public class CommandsController : ControllerBase
     {
-        private readonly MockCmdRepo _repo = new MockCmdRepo();
+        private readonly ICmdSnippetsRepo _repo;
+
+        public CommandsController(ICmdSnippetsRepo repo)
+        {
+            _repo = repo;
+        }
+        //private readonly MockCmdRepo _repo = new MockCmdRepo();
         
         // GET api/commands
         [HttpGet]
