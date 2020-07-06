@@ -1,0 +1,32 @@
+using System.Collections.Generic;
+using CmdSnippetsAPI.Models;
+using Microsoft.AspNetCore.Mvc;
+using CmdSnippetsAPI.Data;
+
+namespace CmdSnippetsAPI.Controllers
+{
+    // api/commands
+    [Route("api/commands")]
+    [ApiController]
+    public class CommandsController : ControllerBase
+    {
+        private readonly MockCmdRepo _repo = new MockCmdRepo();
+        
+        // GET api/commands
+        [HttpGet]
+        public ActionResult <IEnumerable<Command>> GetAllCommands()
+        {
+            var cmdItems = _repo.GetAppCommands();
+            return Ok(cmdItems);
+        }
+
+        //GET api/commands/{id}
+        [HttpGet("{id}")]
+        public ActionResult <Command> GetCommandById(int id)
+        {
+            var cmdItem = _repo.GetCommandById(id);
+            return Ok(cmdItem);
+        }
+        
+    }
+}
