@@ -22,12 +22,15 @@ namespace CmdSnippetsAPI.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("HowTo")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Line")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Platform")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

@@ -12,9 +12,9 @@ namespace CmdSnippetsAPI.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    HowTo = table.Column<string>(nullable: true),
-                    Line = table.Column<string>(nullable: true),
-                    Platform = table.Column<string>(nullable: true)
+                    HowTo = table.Column<string>(nullable: false),
+                    Line = table.Column<string>(nullable: false),
+                    Platform = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

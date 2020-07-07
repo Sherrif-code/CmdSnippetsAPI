@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CmdSnippetsAPI.Migrations
 {
     [DbContext(typeof(CmdSnippetsAPIContext))]
-    [Migration("20200707181356_InitialMigration")]
+    [Migration("20200707183433_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,12 +24,15 @@ namespace CmdSnippetsAPI.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("HowTo")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Line")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Platform")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
