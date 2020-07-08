@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using CmdSnippetsAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using CmdSnippetsAPI.Data;
+using CmdSnippetsAPI.Profiles;
+using AutoMapper;
+using CmdSnippetsAPI.DTOs;
 
 namespace CmdSnippetsAPI.Controllers
 {
@@ -11,26 +14,33 @@ namespace CmdSnippetsAPI.Controllers
     public class CommandsController : ControllerBase
     {
         private readonly ICmdSnippetsRepo _repo;
+        private readonly IMapper _mapper;
 
-        public CommandsController(ICmdSnippetsRepo repo)
+        public CommandsController(ICmdSnippetsRepo repo, IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
                 
         // GET api/commands
         [HttpGet]
-        public ActionResult <IEnumerable<Command>> GetAllCommands()
+        public ActionResult <IEnumerable<CommandReadDto>> GetAllCommands()
         {
             var cmdItems = _repo.GetAllCommands();
-            return Ok(cmdItems);
+            // return Ok(cmdItems);
+            return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(cmdItems));
         }
 
         //GET api/commands/{id}
         [HttpGet("{id}")]
-        public ActionResult <Command> GetCommandById(int id)
+        public ActionResult <CommandReadDto> GetCommandById(int id)
         {
             var cmdItem = _repo.GetCommandById(id);
-            return Ok(cmdItem);
+            if (cmdItem != null)
+            {
+                return Ok(_mapper.Map<CommandReadDto>(cmdItem));
+            }
+            return NotFound();
         }
         
     }
