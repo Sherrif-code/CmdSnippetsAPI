@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace CmdSnippetsAPI.DTOs
 {
     public class CommandReadDto
