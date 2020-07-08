@@ -31,7 +31,7 @@ namespace CmdSnippetsAPI
             services.AddDbContext<CmdSnippetsAPIContext>(opt => opt.UseSqlite
                 (Configuration.GetConnectionString("CmdSnippetsConnection")));
             services.AddControllers();
-            services.AddScoped<ICmdSnippetsRepo, MockCmdRepo>();// created once per client request
+            services.AddScoped<ICmdSnippetsRepo, DbCmdSnippetsRepo>();// created once per client request
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

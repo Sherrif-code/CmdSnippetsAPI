@@ -1,0 +1,12 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "${workspaceFolder:CmdSnippetsAPI}/Database/CmdSnippets.sqlite",
+            "driver": "SQLite",
+            "group": "Testing",
+            "name": "CmdAPI",
+            "previewLimit": 50
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

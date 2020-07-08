@@ -5,7 +5,7 @@ namespace CmdSnippetsAPI.Data
 {
     public class MockCmdRepo : ICmdSnippetsRepo
     {
-        public IEnumerable<Command> GetAppCommands()
+        public IEnumerable<Command> GetAllCommands()
         {
             var cmds = new List<Command>
             {

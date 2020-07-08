@@ -22,7 +22,7 @@ namespace CmdSnippetsAPI.Controllers
         [HttpGet]
         public ActionResult <IEnumerable<Command>> GetAllCommands()
         {
-            var cmdItems = _repo.GetAppCommands();
+            var cmdItems = _repo.GetAllCommands();
             return Ok(cmdItems);
         }
 
