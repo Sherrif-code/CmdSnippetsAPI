@@ -27,12 +27,11 @@ namespace CmdSnippetsAPI.Controllers
         public ActionResult <IEnumerable<CommandReadDto>> GetAllCommands()
         {
             var cmdItems = _repo.GetAllCommands();
-            // return Ok(cmdItems);
             return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(cmdItems));
         }
 
-        //GET api/commands/{id}
-        [HttpGet("{id}")]
+        // GET api/commands/{id}
+        [HttpGet("{id}", Name = "GetCommandById")]
         public ActionResult <CommandReadDto> GetCommandById(int id)
         {
             var cmdItem = _repo.GetCommandById(id);
@@ -41,6 +40,19 @@ namespace CmdSnippetsAPI.Controllers
                 return Ok(_mapper.Map<CommandReadDto>(cmdItem));
             }
             return NotFound();
+        }
+
+        // POST api/commands
+        [HttpPost]
+        public ActionResult <CommandReadDto> CreateCommand(CommandCreateDto cmdCreateDto)
+        {
+            var cmdModel = _mapper.Map<Command>(cmdCreateDto);
+                _repo.CreateCommand(cmdModel);
+                _repo.SaveChanges();
+
+            var cmdReadDto = _mapper.Map<CommandReadDto>(cmdModel);
+
+            return CreatedAtRoute(nameof(GetCommandById), new {Id = cmdReadDto.Id}, cmdReadDto);
         }
         
     }

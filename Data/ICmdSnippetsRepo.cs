@@ -5,7 +5,9 @@ namespace CmdSnippetsAPI.Data
 {
     public interface ICmdSnippetsRepo
     {
-         IEnumerable<Command> GetAllCommands();
-         Command GetCommandById(int id);
+        bool SaveChanges();
+        IEnumerable<Command> GetAllCommands();
+        Command GetCommandById(int id);
+        void CreateCommand(Command cmd);
     }
 }
