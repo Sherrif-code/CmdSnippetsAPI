@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using CmdSnippetsAPI.Data;
 using CmdSnippetsAPI.Database;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace CmdSnippetsAPI
 {
@@ -31,6 +32,9 @@ namespace CmdSnippetsAPI
             services.AddDbContext<CmdSnippetsAPIContext>(opt => opt.UseSqlite
                 (Configuration.GetConnectionString("CmdSnippetsConnection")));
             services.AddControllers();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<ICmdSnippetsRepo, DbCmdSnippetsRepo>();// created once per client request
         }
 

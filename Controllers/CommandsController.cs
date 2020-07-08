@@ -16,8 +16,7 @@ namespace CmdSnippetsAPI.Controllers
         {
             _repo = repo;
         }
-        //private readonly MockCmdRepo _repo = new MockCmdRepo();
-        
+                
         // GET api/commands
         [HttpGet]
         public ActionResult <IEnumerable<Command>> GetAllCommands()
