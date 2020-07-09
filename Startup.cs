@@ -14,6 +14,7 @@ using CmdSnippetsAPI.Data;
 using CmdSnippetsAPI.Database;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Newtonsoft.Json.Serialization;
 
 namespace CmdSnippetsAPI
 {
@@ -31,7 +32,11 @@ namespace CmdSnippetsAPI
         {
             services.AddDbContext<CmdSnippetsAPIContext>(opt => opt.UseSqlite
                 (Configuration.GetConnectionString("CmdSnippetsConnection")));
-            services.AddControllers();
+            
+            services.AddControllers().AddNewtonsoftJson(s => 
+                {
+                    s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

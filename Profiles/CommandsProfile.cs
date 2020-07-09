@@ -12,6 +12,7 @@ namespace CmdSnippetsAPI.Profiles
             CreateMap<CommandCreateDto, Command>();
             CreateMap<Command, CommandReadDto>();
             CreateMap<CommandUpdateDto, Command>();
+            CreateMap<Command, CommandUpdateDto>();
         }
     }
 }

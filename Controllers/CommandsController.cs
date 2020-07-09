@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using CmdSnippetsAPI.Data;
 using AutoMapper;
 using CmdSnippetsAPI.DTOs;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace CmdSnippetsAPI.Controllers
 {
@@ -70,6 +71,31 @@ namespace CmdSnippetsAPI.Controllers
 
             For maintaining a seperate interface from implimentation
             we could still call an update method */
+            _repo.UpdateCommand(cmdModelFromRepo);
+            _repo.SaveChanges();
+
+            return NoContent();
+        }
+
+        // PATCH api/commands/{id}
+        [HttpPatch("{id}")]
+        public ActionResult PartialCommandUpdate(int id, JsonPatchDocument<CommandUpdateDto> patchDoc)
+        {
+            var cmdModelFromRepo = _repo.GetCommandById(id);
+            if(cmdModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var cmdToPatch = _mapper.Map<CommandUpdateDto>(cmdModelFromRepo);
+            patchDoc.ApplyTo(cmdToPatch, ModelState);
+
+            if(!TryValidateModel(cmdToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(cmdToPatch, cmdModelFromRepo);
             _repo.UpdateCommand(cmdModelFromRepo);
             _repo.SaveChanges();
 
