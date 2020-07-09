@@ -39,5 +39,11 @@ namespace CmdSnippetsAPI.Data
         {
             return (_context.SaveChanges()) >= 0;
         }
+
+        public void UpdateCommand(Command cmd)
+        {
+            // Because of how DbContext works, we do not
+            // actually have to implement Update here
+        }
     }
 }

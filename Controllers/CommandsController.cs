@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using CmdSnippetsAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using CmdSnippetsAPI.Data;
-using CmdSnippetsAPI.Profiles;
 using AutoMapper;
 using CmdSnippetsAPI.DTOs;
 
@@ -53,6 +52,28 @@ namespace CmdSnippetsAPI.Controllers
             var cmdReadDto = _mapper.Map<CommandReadDto>(cmdModel);
 
             return CreatedAtRoute(nameof(GetCommandById), new {Id = cmdReadDto.Id}, cmdReadDto);
+        }
+
+        // PUT api/commands/{id}
+        [HttpPut("{id}")]
+        public ActionResult UpdateCommand(int id, CommandUpdateDto cmdUpdateDto)
+        {
+            var cmdModelFromRepo = _repo.GetCommandById(id);
+            if(cmdModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(cmdUpdateDto, cmdModelFromRepo); 
+            /* This acts as an auto update through mapping and comparing 
+            source and destination, all we need now is to flush/save changes
+
+            For maintaining a seperate interface from implimentation
+            we could still call an update method */
+            _repo.UpdateCommand(cmdModelFromRepo);
+            _repo.SaveChanges();
+
+            return NoContent();
         }
         
     }

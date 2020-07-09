@@ -9,8 +9,9 @@ namespace CmdSnippetsAPI.Profiles
         public CommandsProfile()
         {
             // Source -> Target
-            CreateMap<Command, CommandReadDto>();
             CreateMap<CommandCreateDto, Command>();
+            CreateMap<Command, CommandReadDto>();
+            CreateMap<CommandUpdateDto, Command>();
         }
     }
 }
