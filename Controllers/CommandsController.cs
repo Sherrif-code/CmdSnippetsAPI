@@ -82,15 +82,14 @@ namespace CmdSnippetsAPI.Controllers
         public ActionResult PartialCommandUpdate(int id, JsonPatchDocument<CommandUpdateDto> patchDoc)
         {
             var cmdModelFromRepo = _repo.GetCommandById(id);
-            if(cmdModelFromRepo == null)
+            if (cmdModelFromRepo == null)
             {
                 return NotFound();
             }
-
             var cmdToPatch = _mapper.Map<CommandUpdateDto>(cmdModelFromRepo);
             patchDoc.ApplyTo(cmdToPatch, ModelState);
 
-            if(!TryValidateModel(cmdToPatch))
+            if (!TryValidateModel(cmdToPatch))
             {
                 return ValidationProblem(ModelState);
             }
@@ -101,6 +100,22 @@ namespace CmdSnippetsAPI.Controllers
 
             return NoContent();
         }
-        
+
+        // DELETE api/commads/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteCommand(int id)
+        {
+            var cmdModelFromRepo = _repo.GetCommandById(id);
+            if (cmdModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _repo.DeleteCommand(cmdModelFromRepo);
+            _repo.SaveChanges();
+
+            return NoContent();
+        }
+
     }
 }
