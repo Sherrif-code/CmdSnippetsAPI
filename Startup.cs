@@ -15,6 +15,7 @@ using CmdSnippetsAPI.Database;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Newtonsoft.Json.Serialization;
+using Microsoft.OpenApi.Models;
 
 namespace CmdSnippetsAPI
 {
@@ -40,7 +41,17 @@ namespace CmdSnippetsAPI
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddScoped<ICmdSnippetsRepo, DbCmdSnippetsRepo>();// created once per client request
+            services.AddScoped<ICmdSnippetsRepo, DbCmdSnippetsRepo>(); // created once per client request
+
+            services.AddSwaggerGen(c => 
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                {
+                    Version = "v1",
+                    Title = "Command Snippets API",
+                    Description = "Asp.Net Core API to store command snippets"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +61,13 @@ namespace CmdSnippetsAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 

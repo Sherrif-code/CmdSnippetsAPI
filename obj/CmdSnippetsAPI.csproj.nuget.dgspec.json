@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/chidy/Projects/ForGit/CmdSnippetsAPI/CmdSnippetsAPI.csproj": {}
+    "/media/chidy/store/XxxxxxxCurrent from linux/Projects/ForGit/CmdSnippetsAPI/CmdSnippetsAPI.csproj": {}
   },
   "projects": {
-    "/home/chidy/Projects/ForGit/CmdSnippetsAPI/CmdSnippetsAPI.csproj": {
+    "/media/chidy/store/XxxxxxxCurrent from linux/Projects/ForGit/CmdSnippetsAPI/CmdSnippetsAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/chidy/Projects/ForGit/CmdSnippetsAPI/CmdSnippetsAPI.csproj",
+        "projectUniqueName": "/media/chidy/store/XxxxxxxCurrent from linux/Projects/ForGit/CmdSnippetsAPI/CmdSnippetsAPI.csproj",
         "projectName": "CmdSnippetsAPI",
-        "projectPath": "/home/chidy/Projects/ForGit/CmdSnippetsAPI/CmdSnippetsAPI.csproj",
+        "projectPath": "/media/chidy/store/XxxxxxxCurrent from linux/Projects/ForGit/CmdSnippetsAPI/CmdSnippetsAPI.csproj",
         "packagesPath": "/home/chidy/.nuget/packages/",
-        "outputPath": "/home/chidy/Projects/ForGit/CmdSnippetsAPI/obj/",
+        "outputPath": "/media/chidy/store/XxxxxxxCurrent from linux/Projects/ForGit/CmdSnippetsAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/chidy/.nuget/NuGet/NuGet.Config"
@@ -67,6 +67,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.5, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.0, )"
             }
           },
           "imports": [
@@ -87,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
         }
       }
     }
